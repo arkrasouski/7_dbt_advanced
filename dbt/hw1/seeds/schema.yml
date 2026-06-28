@@ -1,0 +1,20 @@
+version: 2
+
+seeds:
+  - name: smartphone_cleaned_v5
+    description: "Источник характеристик смартфонов"
+    columns:
+      - name: brand_name
+        description: "Наименование бренда смартфона"
+      - name: model
+        description: "Наименование модели смартфона"
+      - name: price
+        description: "Цена смартфона"
+      - name: processor_brand
+        description: "Наименование бренда процессора"
+      - name: num_cores
+        description: "Количество ядер процессора"
+      - name: processor_speed
+        description: "Скорость процессора"
+      - name: battery_capacity
+        description: "Емкость аккумулятора"

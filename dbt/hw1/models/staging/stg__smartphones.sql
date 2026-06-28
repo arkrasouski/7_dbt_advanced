@@ -16,3 +16,4 @@ SELECT
     processor_speed,
     battery_capacity::int
 FROM {{source('seed__smartfones', 'smartphones')}}
+WHERE num_cores > 0 --Добавил для проверки юнит теста

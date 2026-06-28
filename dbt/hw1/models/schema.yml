@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: stg__smartphones
+    description: "Данные о смартфонах, их процессорах и батареях из источника"
+    columns:
+      - name: brand_name
+        description: "Наименование бренда смартфона"
+      - name: model
+        description: "Наименование модели смартфона"
+      - name: price
+        description: "Цена"
+      - name: processor_brand
+        description: "Наименование бренда процессора"
+      - name: num_cores
+        description: "Количество ядер процессора"
+        tests:
+          - value_multiple_of_2
+      - name: processor_speed
+        description: "Скорость процессора"
+      - name: battery_capacity
+        description: "Емкость аккумулятора"
+
+  - name: int__smartphones_brands
+    description: "Справочник наименований брендов смартфонов"
+    columns:
+      - name: brand_name
+        description: "Наименование бренда смартфона"
+        tests:
+          - unique
+          - not_null
+
+  - name: int__smartphones_combination
+    description: "Таблица комбинаций характеристик процессоров и аккумуляторов"
+    columns:
+      - name: processor_brand
+        description: "Наименование бренда процессора"
+      - name: num_cores
+        description: "Количество ядер процессора"
+      - name: processor_speed
+        description: "Скорость процессора"
+      - name: battery_capacity
+        description: "Емкость аккумулятора"
+      - name: combination_count
+        description: "Количество совпадений комбинаций характеристик процессоров и аккумуляторов"
+
+  - name: mart__proc_accum_top10
+    description: "Топ 10 комбинаций характеристик процессоров и аккумуляторов в смартфонах"
+    columns:
+      - name: processor_brand
+        description: "Наименование бренда процессора"
+      - name: num_cores
+        description: "Количество ядер процессора"
+      - name: processor_speed
+        description: "Скорость процессора"
+      - name: battery_capacity
+        description: "Емкость аккумулятора"
+
+  - name: mart__proc_using_top10
+    description: "Топ 10 моделей процессоров по частоте использования"
+    columns:
+    - name: processor_brand
+      description: "Наименование бренда процессора"
+    - name: num_cores
+      description: "Количество ядер процессора"
+    - name: processor_speed
+      description: "Скорость процессора"
+
+
+unit_tests:
+  - name: test_is_positive_num_cores
+    model: stg__smartphones
+    given: # фиктивные данные для ваших входных данных
+      - input: source('seed__smartfones', 'smartphones') # source("source_name", "table_name")
+        rows:
+         - {brand_name: ispos, model: com, price: 2.11, processor_brand: test, num_cores: 2, processor_speed: 3, battery_capacity: 5000 }
+         - {brand_name: isnotpos, model: com, price: 211, processor_brand: test, num_cores: 0, processor_speed: 3, battery_capacity: 5000 }
+    expect:
+      rows:
+         - {brand_name: ispos, model: com, price: 2.11, processor_brand: test, num_cores: 2, processor_speed: 3, battery_capacity: 5000 }

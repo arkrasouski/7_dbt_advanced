@@ -1,0 +1,65 @@
+name: 'hw1'
+version: '1.0.0'
+profile: 'hw1'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  hw1:
+    +persist_docs:
+      relation: true
+      columns: true
+    smartphone_cleaned_v5:
+      +column_types:
+        brand_name: varchar
+        model: varchar
+        price:  numeric(15, 2)
+        rating: float #int
+        has_5g: bool
+        has_nfc: bool
+        has_ir_blaster: bool
+        processor_brand: varchar
+        num_cores: float #int
+        processor_speed: float
+        battery_capacity: float #int
+        fast_charging_available: bool
+        fast_charging: float #int
+        ram_capacity: float #int
+        internal_memory: float #int
+        screen_size: float
+        refresh_rate: float #int
+        resolution: varchar
+        num_rear_cameras: float #smallint
+        num_front_cameras: float #smallint
+        os: varchar
+        primary_camera_rear: float
+        primary_camera_front: float
+        extended_memory_available: bool
+        extended_upto: float #int
+
+models:
+  hw1:
+    +materialized: view
+    +persist_docs:
+        relation: true
+        columns: true
+    staging:
+      +tags: ['staging']
+      +materialized: view
+    
+    intermediate:
+      +tags: ['intermediate']
+      +materialized: table
+    
+    marts:
+      +tags: ['marts']
+      +materialized: table 
