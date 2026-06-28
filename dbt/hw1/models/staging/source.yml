@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: seed__smartfones
+    description: "Исходные данные смартфонов каталога из seeds"
+    schema: public
+    
+    tables:
+      - name: smartphones
+        description: "Сырой каталог смартфонов с марками и моделями"
+        identifier: smartphone_cleaned_v5  # Соответствует имени seed-файла
+        
+        columns:
+          - name: brand_name
+            description: "Имя бренда смартфона"
+            tests:
+              - not_null
+              
+          - name: "model"
+            description: "Название модели на английском"
+            tests:
+              - not_null
+              
+          - name: "price"
+            description: "Цена смартфона"
+            
+          - name: "extended_memory_available"
+            description: "Есть ли возможность расширить память"

@@ -1,0 +1,17 @@
+services:
+  postgres_dbt:
+    image: postgres:latest
+    container_name: postgres_dbt
+    restart: always
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_pass
+      POSTGRES_DB: dbt_course
+    ports:
+      - "8732:5432" # хост:контейнер
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+
+volumes:
+  pgdata:
