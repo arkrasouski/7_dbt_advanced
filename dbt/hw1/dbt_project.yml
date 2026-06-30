@@ -15,7 +15,7 @@ clean-targets:
 
 seeds:
   hw1:
-    +persist_docs:
+    +persist_docs: # + означает конфиг
       relation: true
       columns: true
     smartphone_cleaned_v5:
@@ -53,13 +53,29 @@ models:
         relation: true
         columns: true
     staging:
-      +tags: ['staging']
+      +tags: ['staging', 'DE']
       +materialized: view
+      +meta:
+        owner: "data-engineer"
+        layer: "staging"
     
     intermediate:
-      +tags: ['intermediate']
+      +tags: ['intermediate', 'DE']
       +materialized: table
+      +meta:
+        owner: "data-engineer"
+        layer: "intermediate"
     
     marts:
-      +tags: ['marts']
       +materialized: table 
+      core:
+        +tags: ['marts', 'core', 'DE']
+        +meta:
+          owner: "data-engineer"
+          layer: "marts"
+
+      analytics:
+        +tags: ['marts', 'analytics', 'BI']
+        +meta:
+          owner: "analytics"
+          layer: "marts"

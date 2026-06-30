@@ -1,0 +1,11 @@
+unit_tests:
+  - name: test_is_positive_num_cores
+    model: stg__smartphones
+    given: # фиктивные данные для ваших входных данных
+      - input: source('seed__smartfones', 'smartphones') # source("source_name", "table_name")
+        rows:
+         - {brand_name: ispos, model: com, price: 2.11, processor_brand: test, num_cores: 2, processor_speed: 3, battery_capacity: 5000 }
+         - {brand_name: isnotpos, model: com, price: 211, processor_brand: test, num_cores: 0, processor_speed: 3, battery_capacity: 5000 }
+    expect:
+      rows:
+         - {brand_name: ispos, model: com, price: 2.11, processor_brand: test, num_cores: 2, processor_speed: 3, battery_capacity: 5000 }

@@ -1,0 +1,13 @@
+models:
+  - name: mart__proc_using_top10
+    description: "Топ 10 моделей процессоров по частоте использования"
+    config:
+      meta:    
+        business_context: "Топ 10 моделей"
+    columns:
+    - name: processor_brand
+      description: "Наименование бренда процессора"
+    - name: num_cores
+      description: "Количество ядер процессора"
+    - name: processor_speed
+      description: "Скорость процессора"

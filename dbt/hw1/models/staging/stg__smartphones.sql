@@ -3,7 +3,6 @@
     materialized='view',
     schema='smartphones',
     alias='stg_smartphones',
-    tags=['reference', 'products']
   )
 }}
 

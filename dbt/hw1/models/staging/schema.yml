@@ -1,0 +1,25 @@
+models:
+  - name: stg__smartphones
+    description: "Данные о смартфонах, их процессорах и батареях из источника"
+    columns:
+    - name: brand_name
+      description: "Наименование бренда смартфона"
+    - name: model
+      description: "Наименование модели смартфона"
+    - name: price
+      description: "Цена"
+    - name: processor_brand
+      description: "Наименование бренда процессора"
+    - name: num_cores
+      description: "Количество ядер процессора"
+      # tests:
+      #   - value_multiple_of_2
+      data_tests:
+      - accepted_values:
+          arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
+            values: [2, 4, 6, 8]
+          description: "Тест проверки допустимого числа ядер смартфона"
+    - name: processor_speed
+      description: "Скорость процессора"
+    - name: battery_capacity
+      description: "Емкость аккумулятора"
