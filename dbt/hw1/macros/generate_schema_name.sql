@@ -1,11 +1,3 @@
--- {% macro generate_schema_name(custom_schema_name, node) %}
---   {% if custom_schema_name is not none %}
---     {{ return(custom_schema_name) }}
---   {% else %}
---     {{ return(target.schema) }}
---   {% endif %}
--- {% endmacro %}
-
 {% macro generate_schema_name(custom_schema_name, node) -%}
   {%- set default_schema = target.schema -%}
   {%- if target.name == 'ci' -%}
