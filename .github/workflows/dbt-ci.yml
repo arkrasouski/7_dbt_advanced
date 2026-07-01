@@ -83,8 +83,12 @@ jobs:
         run: |
           cd dbt/hw1
           dbt test --select "state:modified+" --defer --state artifacts/dev
+       # state:modified+ = все что изменилось плюс зависимости
+       # --defer все остальное сравниваем со --state artifacts/dev с последним запуском
 
       - name: Запуск измененной модели
         run: |
           cd dbt/hw1
           dbt run --target ci --select "state:modified+" --defer --state artifacts/dev
+
+       # --target ci = целевая система загрузки из ~/.dbt/profiles.yml
