@@ -12,7 +12,7 @@ jobs:
       - name: Скачиваем код
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: main #Этот код говорит action checkout какую именно ветку нужно скачать:
 
       - name: Устанавливаем Python
         uses: actions/setup-python@v5
@@ -57,7 +57,7 @@ jobs:
       - name: Скачиваем код
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.head_ref }} #Этот код говорит action checkout какую именно ветку нужно скачать: из PR
 
       - name: Устанавливаем Python
         uses: actions/setup-python@v5
