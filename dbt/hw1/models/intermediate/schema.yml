@@ -9,7 +9,7 @@ models:
         - not_null
 
   - name: int__smartphones_combination
-    description: "Таблица комбинаций22222 характеристик процессоров и аккумуляторов"
+    description: "Таблица комбинаций характеристик процессоров и аккумуляторов"
     columns:
     - name: processor_brand
       description: "Наименование бренда процессора"

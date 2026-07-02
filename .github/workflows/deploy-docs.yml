@@ -11,8 +11,8 @@ on:
 
 jobs:
   deploy-docs:
-    name: Разворачиваем документацию прода
-    runs-on: ubuntu-latest
+    name: Разворачиваем документацию дева
+    runs-on: self-hosted
     permissions:
       contents: write # Права на запись в содержимое репозитория
       pages: write # Права на запись в GitHub Pages
@@ -37,7 +37,9 @@ jobs:
           dbt deps
       
       - name: Генерируем документацию (dev)
+      
         run: |
+          cd dbt/hw1
           dbt docs generate --target dev
           echo "✅ Дев документация сгенерирована"
       
